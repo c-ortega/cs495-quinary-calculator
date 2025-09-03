@@ -16,3 +16,14 @@ def division(num1, num2):
     else:
         result = num1 // num2
     return result
+
+def square(num):
+    result = num * num
+    return result
+
+def square_root(num):
+    if num < 0:
+        result = "Error"
+    else:
+        result = int(num ** 0.5)
+    return result

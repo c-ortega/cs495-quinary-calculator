@@ -1,40 +1,84 @@
 import operations
+import math
 
-def quinaryCalculator():
+class Calc:
+    def __init__(self):
+        self.clear()
 
-#   base 5. We take in the input as base 5 quinary
-    numInput1 = "13"
-    numInput2 = "3"
+    def clear(self):
+        self.current_input = ""
+        self.previous_value = None
+        self.operation = None
 
-#   base 10 integers. Convert the base 5 into decimal base 10
-    numInput1Decimal = int(numInput1, 5)
-    numInput2Decimal = int(numInput2, 5)
+    def push_digit(self, digit):
+        if digit not in "01234":
+            raise ValueError("Only digits 0-4 are valid in base 5")
+        self.current_input += digit
 
-    add = operations.addition(numInput1Decimal, numInput2Decimal);
-    sub = operations.subtraction(numInput1Decimal, numInput2Decimal);
-    multiply = operations.multiplication(numInput1Decimal, numInput2Decimal);
-    divide = operations.division(numInput1Decimal, numInput2Decimal);
+    def set_operation(self, op):
+        if op not in {"+", "-", "*", "/", "sq", "sqrt"}:
+            raise ValueError(f"Unsupported operation: {op}")
+        
+        if op in {"sq", "sqrt"}:
+            self.previous_value = int(self.current_input, 5)
+            self.operation = op
+            self.equal()  # immediately compute
+        else:
+            if self.current_input == "":
+                raise ValueError("No input")
+            self.previous_value = int(self.current_input, 5)
+            self.current_input = ""
+            self.operation = op
 
-    print(f"(Base 10) num1 + num2 = {add}")
-    # print(f"(Base 10) num1 - num2 = {sub}")
-    # print(f"(Base 10) num1 * num2 = {multiply}")
-    # print(f"(Base 10) num1 // num2 = {divide}")
+    def equal(self):
+        if self.operation is None:
+            return
+        
+        if self.operation in {"sq", "sqrt"}:
+            operand = self.previous_value
+        else:
+            if self.current_input == "":
+                raise ValueError("Missing second operand")
+            operand = int(self.current_input, 5)
 
-    result = add
-    # result = sub
-    # result = multiply
-    # result = divide
+        if self.operation == "+":
+            result = operations.addition(self.previous_value, operand)
+        elif self.operation == "-":
+            result = operations.subtraction(self.previous_value, operand)
+        elif self.operation == "*":
+            result = operations.multiplication(self.previous_value, operand)
+        elif self.operation == "/":
+            result = operations.division(self.previous_value, operand)
+            if isinstance(result, str):  # Error from division
+                self.current_input = ""
+                self.previous_value = None
+                self.operation = None
+                raise ValueError(result)
+        elif self.operation == "sq":
+            result = operations.square(self.previous_value)
+        elif self.operation == "sqrt":
+            result = operations.square_root(self.previous_value)
+        else:
+            raise ValueError("Invalid operation")
 
-#   back to base 5. Get remainder from result and add to string. Then, do floor division for next digit. Loop through each decimal place.
-    quinary = ""
-    if type(result) == str:
-        return print(result)
-    else:
-        while result > 0:
-            remainder = result % 5
-            quinary = str(remainder) + quinary
-            result //= 5
-        return print(f"Converted result to base 5 = {quinary}")
+        self.current_input = self._to_quinary(result)
+        self.previous_value = None
+        self.operation = None
 
-if __name__ == "__main__":
-    quinaryCalculator()
+    def get_display_quinary(self):
+        return self.current_input or "0"
+
+    def get_display_decimal(self):
+        try:
+            return str(int(self.current_input, 5))
+        except:
+            return "Error"
+
+    def _to_quinary(self, num):
+        if num == 0:
+            return "0"
+        quinary = ""
+        while num > 0:
+            quinary = str(num % 5) + quinary
+            num //= 5
+        return quinary
