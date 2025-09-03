@@ -12,7 +12,7 @@ def multiplication(num1, num2):
 
 def division(num1, num2):
     if num2 == 0:
-        result = "Infinity"
+        result = "Error"
     else:
-        result = num1 / num2
+        result = num1 // num2
     return result
