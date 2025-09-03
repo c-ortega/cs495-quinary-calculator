@@ -55,9 +55,9 @@ class Calc:
                 self.operation = None
                 raise ValueError(result)
         elif self.operation == "sq":
-            result = self.previous_value ** 2
+            result = operations.square(self.previous_value)
         elif self.operation == "sqrt":
-            result = int(math.sqrt(self.previous_value))
+            result = operations.square_root(self.previous_value)
         else:
             raise ValueError("Invalid operation")
 
