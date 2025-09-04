@@ -1,11 +1,14 @@
 # cs495-quinary-calculator
 
 How-To Manual:
+- Clone the repository to your device.
+- Run [pip install -r requirements.txt] to ensure all dependencies are met.
+- The user should run the UI.py file for the calculator to appear.
 
 Task Division:
-- Chris: tests / square root
+- Chris: tests / square root functionality 
 - Emmaline: basic math computations (addition, subtraction, etc.)
-- Tierra: toggle (this ended up being completed in the UI and base functionality, so switched tasks to readme)
+- Tierra: toggle functionality (this ended up being completed in the UI and base functionality, so switched tasks to readme)
 - Trinity: UI
 - Alex: base functionality
 
