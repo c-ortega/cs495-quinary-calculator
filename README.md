@@ -1,6 +1,6 @@
 # cs495-quinary-calculator
 
-A Quinary Calculator is a calculator that performs operations using the base 5 number system. As the only digits used are 0, 1, 2, 3, and 4, number 5 would be representing in quinary by 10. 11 in quinary is 12 in decimal and that pattern continues on.
+A Quinary Calculator is a calculator that performs operations using the base 5 number system. As the only digits used are 0, 1, 2, 3, and 4, number 5 would be representing in quinary by 10. 11 in quinary is 6 in decimal and that pattern continues on. This calculator performs all of the standard operations but can also switch between the two number systems.
 
 <img width="305" height="251" alt="image" src="https://github.com/user-attachments/assets/5e6a69a0-8340-4c24-943a-5e9f3b2b8cb9" />
 <img width="302" height="256" alt="image" src="https://github.com/user-attachments/assets/8b25fde3-595b-4918-8de8-95c4bfecf4fa" />
