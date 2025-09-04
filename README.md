@@ -1,5 +1,8 @@
 # cs495-quinary-calculator
 
+<img width="305" height="251" alt="image" src="https://github.com/user-attachments/assets/5e6a69a0-8340-4c24-943a-5e9f3b2b8cb9" />
+<img width="302" height="256" alt="image" src="https://github.com/user-attachments/assets/8b25fde3-595b-4918-8de8-95c4bfecf4fa" />
+
 How-To Manual:
 - Clone the repository to your device.
 - Run [pip install -r requirements.txt] to ensure all dependencies are met.
